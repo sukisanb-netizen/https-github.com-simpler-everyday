@@ -66,9 +66,25 @@
   [data-lang-content]{display:none;}
   [data-lang-content].active{display:block;}
 
+  /* reveal-on-scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    filter:blur(6px);
+    transition:opacity .9s cubic-bezier(0.32,0.72,0,1), transform .9s cubic-bezier(0.32,0.72,0,1), filter .9s cubic-bezier(0.32,0.72,0,1);
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+    filter:blur(0);
+  }
+  @media(prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; filter:none; transition:none;}
+  }
+
   /* hero */
   .hero{
-    padding:56px 0 44px;
+    padding:72px 0 56px;
     text-align:center;
   }
   .hero h1{
@@ -88,27 +104,36 @@
   .blocks{
     display:grid;
     grid-template-columns:1fr;
-    gap:2px;
-    background:var(--line);
-    border-radius:var(--radius);
-    overflow:hidden;
-    margin:8px 0 40px;
+    gap:18px;
+    margin:8px 0 48px;
   }
   @media(min-width:640px){
     .blocks{grid-template-columns:1fr 1fr;}
   }
   .block{
     background:var(--cream-deep);
-    padding:30px 28px;
+    padding:32px 28px;
+    border-radius:22px;
+    border:1px solid rgba(228,220,203,0.55);
+    box-shadow:0 1px 2px rgba(44,42,36,0.04), 0 16px 36px -18px rgba(44,42,36,0.18);
+    transition:transform .6s cubic-bezier(0.32,0.72,0,1), box-shadow .6s cubic-bezier(0.32,0.72,0,1);
+  }
+  .block:hover{
+    transform:translateY(-3px);
+    box-shadow:0 1px 2px rgba(44,42,36,0.05), 0 22px 44px -18px rgba(44,42,36,0.22);
   }
   .block .tag{
-    display:inline-block;
-    font-size:12px;
+    display:inline-flex;
+    align-items:center;
+    font-size:10px;
     font-weight:600;
-    letter-spacing:0.06em;
+    letter-spacing:0.18em;
     text-transform:uppercase;
     color:var(--terracotta);
-    margin-bottom:10px;
+    background:rgba(193,122,82,0.1);
+    padding:5px 11px;
+    border-radius:999px;
+    margin-bottom:14px;
   }
   .block h2{
     font-size:21px;
@@ -122,7 +147,7 @@
 
   /* transition */
   .transition{
-    padding:8px 0 44px;
+    padding:16px 0 52px;
     max-width:600px;
     margin:0 auto;
     text-align:center;
@@ -141,7 +166,7 @@
   /* CTA */
   .cta{
     text-align:center;
-    padding:8px 0 64px;
+    padding:16px 0 72px;
   }
   .cta p.lead{
     font-size:17px;
@@ -161,13 +186,25 @@
     padding:15px 30px;
     border-radius:999px;
     text-decoration:none;
-    transition:transform .15s ease, background .15s ease;
+    box-shadow:0 10px 26px -10px rgba(63,89,64,0.5);
+    transition:transform .5s cubic-bezier(0.32,0.72,0,1), background .35s cubic-bezier(0.32,0.72,0,1), box-shadow .5s cubic-bezier(0.32,0.72,0,1);
   }
   .wa-button:hover{
     background:var(--sage);
-    transform:translateY(-1px);
+    transform:translateY(-2px);
+    box-shadow:0 16px 34px -12px rgba(63,89,64,0.55);
   }
-  .wa-button svg{width:20px; height:20px; flex-shrink:0;}
+  .wa-button:active{
+    transform:translateY(0) scale(.97);
+    transition-duration:.15s;
+  }
+  .wa-button svg{
+    width:20px; height:20px; flex-shrink:0;
+    transition:transform .45s cubic-bezier(0.32,0.72,0,1);
+  }
+  .wa-button:hover svg{
+    transform:translate(2px,-1px) scale(1.08);
+  }
   .cta .note{
     font-size:13.5px;
     color:var(--ink-soft);
@@ -315,15 +352,44 @@
 (function(){
   var buttons = document.querySelectorAll('[data-lang-btn]');
   var panels = document.querySelectorAll('[data-lang-content]');
+
+  function revealNow(panel){
+    panel.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
+
   buttons.forEach(function(btn){
     btn.addEventListener('click', function(){
       var lang = btn.getAttribute('data-lang-btn');
       buttons.forEach(function(b){ b.classList.toggle('active', b === btn); });
       panels.forEach(function(p){
-        p.classList.toggle('active', p.getAttribute('data-lang-content') === lang);
+        var isMatch = p.getAttribute('data-lang-content') === lang;
+        p.classList.toggle('active', isMatch);
+        if (isMatch) revealNow(p);
       });
       document.documentElement.setAttribute('lang', lang);
     });
+  });
+
+  var revealTargets = document.querySelectorAll('.hero, .block, .transition, .cta');
+  revealTargets.forEach(function(el){ el.classList.add('reveal'); });
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    revealTargets.forEach(function(el){ io.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  // Safety net: the above-the-fold hero should never wait on the observer.
+  document.querySelectorAll('[data-lang-content].active .hero').forEach(function(el){
+    el.classList.add('in-view');
   });
 })();
 </script>
