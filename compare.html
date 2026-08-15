@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3样比较表 · 长这样</title>
+<meta name="description" content="把你现在用的3样日用品告诉我，我做一份对比给你。值得才换，不适合就继续用你现在的。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf6ef;
+    --cream-deep:#f2ecdf;
+    --ink:#2c2a24;
+    --ink-soft:#5a564a;
+    --sage:#5f7a5f;
+    --sage-deep:#3f5940;
+    --terracotta:#c17a52;
+    --mustard:#c9a24a;
+    --line:#e4dccb;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Noto Sans SC', system-ui, sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-weight:700; letter-spacing:-0.01em;}
+  .wrap{max-width:720px; margin:0 auto; padding:0 22px;}
+
+  /* hero */
+  .hero{padding:64px 0 40px; text-align:center;}
+  .eyebrow{
+    display:inline-block;
+    font-size:11px; font-weight:700; letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    background:rgba(193,122,82,0.1);
+    padding:6px 14px; border-radius:999px; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(25px,4.6vw,34px);
+    line-height:1.4; color:var(--sage-deep);
+    max-width:19em; margin:0 auto 16px;
+  }
+  .hero p{font-size:16px; color:var(--ink-soft); max-width:26em; margin:0 auto;}
+
+  /* how it works */
+  .steps{
+    display:grid; grid-template-columns:1fr; gap:14px;
+    margin:8px 0 48px;
+  }
+  @media(min-width:620px){.steps{grid-template-columns:repeat(3,1fr);}}
+  .step{
+    background:var(--cream-deep);
+    border:1px solid rgba(228,220,203,.6);
+    border-radius:18px; padding:22px 20px;
+    box-shadow:0 1px 2px rgba(44,42,36,.04), 0 14px 30px -20px rgba(44,42,36,.18);
+  }
+  .step .n{
+    display:flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:50%;
+    background:var(--sage-deep); color:#fff;
+    font-size:13px; font-weight:700; margin-bottom:12px;
+  }
+  .step h3{font-size:15px; margin-bottom:6px;}
+  .step p{font-size:13.5px; color:var(--ink-soft); line-height:1.65;}
+
+  /* sample card */
+  .sample-label{
+    text-align:center; margin-bottom:18px;
+  }
+  .sample-label span{
+    display:inline-block; font-size:12px; font-weight:700;
+    color:var(--ink-soft); background:var(--cream-deep);
+    border:1px dashed var(--line);
+    padding:7px 16px; border-radius:999px;
+  }
+  .card{
+    background:#fff; border:1px solid var(--line);
+    border-radius:22px; padding:26px 22px; margin-bottom:16px;
+    box-shadow:0 1px 2px rgba(44,42,36,.04), 0 18px 40px -24px rgba(44,42,36,.22);
+  }
+  .cat{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:12px; font-weight:700; color:#fff;
+    padding:5px 13px; border-radius:999px; margin-bottom:16px;
+  }
+  .cat.c1{background:var(--sage);}
+  .cat.c2{background:var(--mustard);}
+  .cat.c3{background:var(--terracotta);}
+
+  .cols{display:grid; grid-template-columns:1fr; gap:10px;}
+  @media(min-width:560px){.cols{grid-template-columns:1fr 1fr;}}
+  .col{border-radius:14px; padding:16px 16px 14px;}
+  .col.now{background:#f5f3ed;}
+  .col.mel{background:#edf2e9;}
+  .col h4{
+    font-size:11.5px; font-weight:700; letter-spacing:.05em;
+    margin-bottom:10px; text-transform:none;
+  }
+  .col.now h4{color:var(--ink-soft);}
+  .col.mel h4{color:var(--sage-deep);}
+  .col dl{display:grid; grid-template-columns:auto 1fr; gap:4px 10px; font-size:13px;}
+  .col dt{color:var(--ink-soft); white-space:nowrap;}
+  .col dd{font-weight:500;}
+  .col .per{
+    margin-top:11px; padding-top:10px; border-top:1px solid rgba(0,0,0,.07);
+    font-size:13px;
+  }
+  .col .per b{font-size:16px;}
+  .col.mel .per b{color:var(--sage-deep);}
+
+  .verdict{
+    margin-top:16px; padding:13px 16px; border-radius:12px;
+    font-size:13.5px; line-height:1.6; display:flex; gap:10px; align-items:flex-start;
+  }
+  .verdict .tag{font-weight:700; white-space:nowrap;}
+  .verdict.yes{background:rgba(95,122,95,.1);}
+  .verdict.yes .tag{color:var(--sage-deep);}
+  .verdict.mid{background:rgba(201,162,74,.12);}
+  .verdict.mid .tag{color:#8a6d21;}
+  .verdict.no{background:rgba(90,86,74,.08);}
+  .verdict.no .tag{color:var(--ink-soft);}
+
+  /* summary */
+  .summary{
+    background:var(--sage-deep); color:#eef3ec;
+    border-radius:22px; padding:26px 24px; margin:26px 0 12px;
+  }
+  .summary h3{font-size:15px; color:#fff; margin-bottom:12px;}
+  .summary p{font-size:14px; line-height:1.85;}
+  .summary .big{color:#fff; font-weight:700;}
+
+  .honest{
+    background:var(--cream-deep); border:1px solid var(--line);
+    border-radius:18px; padding:22px 22px; margin:26px 0 44px;
+    font-size:14.5px; line-height:1.8;
+  }
+  .honest b{color:var(--sage-deep);}
+
+  /* cta */
+  .cta{text-align:center; padding:8px 0 60px;}
+  .cta h2{font-size:clamp(20px,3.6vw,26px); line-height:1.5; color:var(--sage-deep); margin-bottom:14px;}
+  .cta > p{font-size:15px; color:var(--ink-soft); max-width:24em; margin:0 auto 26px;}
+  .wa{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--sage-deep); color:#fff; font-weight:700; font-size:16px;
+    padding:16px 32px; border-radius:999px; text-decoration:none;
+    box-shadow:0 10px 26px -10px rgba(63,89,64,.5);
+    transition:transform .5s cubic-bezier(0.32,0.72,0,1), background .35s ease, box-shadow .5s ease;
+  }
+  .wa:hover{background:var(--sage); transform:translateY(-2px); box-shadow:0 16px 34px -12px rgba(63,89,64,.55);}
+  .wa:active{transform:translateY(0) scale(.97); transition-duration:.15s;}
+  .wa svg{width:20px; height:20px; flex-shrink:0; transition:transform .45s cubic-bezier(0.32,0.72,0,1);}
+  .wa:hover svg{transform:translate(2px,-1px) scale(1.08);}
+  .cta .note{font-size:13px; color:var(--ink-soft); margin-top:14px;}
+
+  footer{
+    border-top:1px solid var(--line); padding:24px 0 40px; text-align:center;
+  }
+  footer p{font-size:12px; color:var(--ink-soft); line-height:1.8;}
+  footer a{color:var(--ink-soft);}
+  .disclaimer{
+    font-size:11.5px; color:var(--ink-soft); line-height:1.75;
+    background:rgba(0,0,0,.025); border-radius:12px;
+    padding:14px 16px; margin-top:18px; text-align:left;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">示范例子</span>
+    <h1>「3样比较表」长这样</h1>
+    <p>把你现在正在用的 3 样日用品告诉我，我做一份对比给你。<br>值得才换，不适合就继续用你现在的。</p>
+  </section>
+
+  <div class="steps">
+    <div class="step">
+      <div class="n">1</div>
+      <h3>拍 3 样给我</h3>
+      <p>家庭清洁、个人护理、营养各一样。拍正面和背面标签，有价格更好。</p>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <h3>我做对比</h3>
+      <p>用途、规格、价格、每次使用成本、Product Points，一样一样列出来。</p>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <h3>你自己决定</h3>
+      <p>看完你决定要不要换、换几样、什么时候换。不需要当场回复。</p>
+    </div>
+  </div>
+
+  <div class="sample-label">
+    <span>↓ 以下为示范内容，数字仅供说明格式之用 ↓</span>
+  </div>
+
+  <!-- ① -->
+  <div class="card">
+    <span class="cat c1">① 家庭清洁</span>
+    <div class="cols">
+      <div class="col now">
+        <h4>你现在用的</h4>
+        <dl>
+          <dt>产品</dt><dd>某品牌洗衣液</dd>
+          <dt>容量</dt><dd>2 公升</dd>
+          <dt>价格</dt><dd>RM 26</dd>
+          <dt>可洗</dt><dd>约 40 次</dd>
+        </dl>
+        <div class="per">每次约 <b>RM 0.65</b></div>
+      </div>
+      <div class="col mel">
+        <h4>美乐家对应</h4>
+        <dl>
+          <dt>产品</dt><dd>浓缩洗衣液</dd>
+          <dt>容量</dt><dd>__ 公升（浓缩）</dd>
+          <dt>价格</dt><dd>RM __</dd>
+          <dt>可洗</dt><dd>约 __ 次</dd>
+        </dl>
+        <div class="per">每次约 <b>RM __</b></div>
+      </div>
+    </div>
+    <div class="verdict yes">
+      <span class="tag">✅ 值得换</span>
+      <span>浓缩配方一瓶可洗的次数明显较多，按「每次成本」算下来比较划算。这是你最常买、也最容易看出差别的一样。</span>
+    </div>
+  </div>
+
+  <!-- ② -->
+  <div class="card">
+    <span class="cat c2">② 个人护理</span>
+    <div class="cols">
+      <div class="col now">
+        <h4>你现在用的</h4>
+        <dl>
+          <dt>产品</dt><dd>某品牌洗手液</dd>
+          <dt>容量</dt><dd>500 毫升</dd>
+          <dt>价格</dt><dd>RM 15</dd>
+          <dt>可用</dt><dd>约 250 次</dd>
+        </dl>
+        <div class="per">每次约 <b>RM 0.06</b></div>
+      </div>
+      <div class="col mel">
+        <h4>美乐家对应</h4>
+        <dl>
+          <dt>产品</dt><dd>洗手液</dd>
+          <dt>容量</dt><dd>__ 毫升</dd>
+          <dt>价格</dt><dd>RM __</dd>
+          <dt>可用</dt><dd>约 __ 次</dd>
+        </dl>
+        <div class="per">每次约 <b>RM __</b></div>
+      </div>
+    </div>
+    <div class="verdict mid">
+      <span class="tag">⚖️ 差不多</span>
+      <span>两边每次成本接近。差别主要在成分表和使用感受 —— 这一样你可以先看成分，喜欢再换，不急。</span>
+    </div>
+  </div>
+
+  <!-- ③ -->
+  <div class="card">
+    <span class="cat c3">③ 营养 / Wellness</span>
+    <div class="cols">
+      <div class="col now">
+        <h4>你现在用的</h4>
+        <dl>
+          <dt>产品</dt><dd>某品牌维生素 C</dd>
+          <dt>规格</dt><dd>100 粒</dd>
+          <dt>价格</dt><dd>RM 38</dd>
+          <dt>每日</dt><dd>1 粒</dd>
+        </dl>
+        <div class="per">每日约 <b>RM 0.38</b></div>
+      </div>
+      <div class="col mel">
+        <h4>美乐家对应</h4>
+        <dl>
+          <dt>产品</dt><dd>—</dd>
+          <dt>规格</dt><dd>—</dd>
+          <dt>价格</dt><dd>—</dd>
+          <dt>每日</dt><dd>—</dd>
+        </dl>
+        <div class="per">每日约 <b>—</b></div>
+      </div>
+    </div>
+    <div class="verdict no">
+      <span class="tag">🔵 先不用换</span>
+      <span>你现在吃的这款，剂量和价格都合理，也已经吃习惯了。我看不出换掉的理由 —— 继续用就好。</span>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h3>小结</h3>
+    <p>
+      这次建议只换 <span class="big">1 样</span>（洗衣液）。<br>
+      每月约 <span class="big">RM __</span>　≈　<span class="big">__ Product Points</span><br>
+      距离 Member 每月 35 点，还差 <span class="big">__ 点</span> —— 下次我们再看要不要补一样。
+    </p>
+  </div>
+
+  <div class="honest">
+    <b>为什么第 3 样我说「先不用换」？</b><br>
+    因为如果每次比较，我都告诉你三样全部要换，那这份比较表就不是比较表，是价目表。<br>
+    我做这个的用意是让你看清楚差别在哪里 —— 有差别的才换，没差别的省下来。
+  </div>
+
+  <section class="cta">
+    <h2>你的第一步，不是加入。<br>是先找到值得换的那一样。</h2>
+    <p>拍 3 样你现在用的产品给我，我做一份对比给你。看完，你自己决定。</p>
+    <a class="wa" href="https://wa.me/601169141319?text=Hi%20Damone%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E7%A4%BA%E8%8C%83%E7%9A%84%E6%AF%94%E8%BE%83%E8%A1%A8%EF%BC%8C%E6%88%91%E6%83%B3%E6%AF%94%E8%BE%833%E6%A0%B7%E4%BA%A7%E5%93%81%EF%BC%9A%0A%E2%98%90%20%E5%AE%B6%E5%BA%AD%E6%B8%85%E6%B4%81%0A%E2%98%90%20%E4%B8%AA%E4%BA%BA%E6%8A%A4%E7%90%86%0A%E2%98%90%20%E8%90%A5%E5%85%BB%20%2F%20Wellness" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4c-4.87 0-8.83 3.92-8.83 8.75a8.66 8.66 0 0 0 1.19 4.4L3.2 21l3.98-1.05a8.9 8.9 0 0 0 4.86 1.42h.01c4.87 0 8.83-3.92 8.83-8.75a8.6 8.6 0 0 0-2.65-6.2zm-5.55 13.47h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.73.75-2.7-.18-.28a7.16 7.16 0 0 1-1.13-3.89c0-4.03 3.3-7.31 7.36-7.31a7.32 7.32 0 0 1 7.35 7.28c0 4.03-3.3 7.36-7.3 7.36zm4.03-5.5c-.22-.11-1.31-.64-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.06-.22-.11-.93-.34-1.77-1.09a6.6 6.6 0 0 1-1.22-1.5c-.13-.22 0-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.64-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.87s.81 2.17.92 2.32c.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.05-.1-.2-.16-.42-.27z"/></svg>
+      扫码/点击开始我的3样比较
+    </a>
+    <p class="note">不需要今天决定是否成为会员。</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Damone | 安心居家 · 健康生活　·　<a href="/">回首页</a></p>
+    <div class="disclaimer">
+      本页为「比较表格式」的示范说明，表中产品名称与数字均为举例用途，<b>并非实际报价</b>，也不代表任何品牌的真实价格。<br>
+      实际比较将依你提供的产品，以及 Melaleuca Malaysia 现行官方价格、Product Points 与会员条款为准。<br>
+      本比较仅涉及用途、规格、价格与使用成本，不涉及任何健康功效之比较或宣称。
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
