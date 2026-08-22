@@ -115,6 +115,8 @@ The palette reads as a warm, sun-bleached paper world — cream, sage, and terra
 ### Named Rules
 **The Two-Voice Rule.** Only two type families exist on any single page: one serif for headlines, one sans for everything else. Never introduce a third family, and never use the serif for body copy or the sans for a hero headline.
 
+**The Numeral Rule.** CJK serif fonts (Noto Serif SC, Noto Sans SC) ship weak, oversized Latin digit glyphs — any standalone number, stat, or price set in a CJK serif font must instead list Fraunces first in the font stack (e.g. `font-family:'Fraunces','Noto Serif SC',serif`). Browsers render Latin characters in Fraunces and silently fall back to the CJK font for Chinese characters in the same string, so this is a font-stack change only — no markup restructuring needed. Applies across every Melaleuca property, not just this page.
+
 ## Layout
 
 Single centered column, `max-width: 720–780px`, with `24px` (`.wrap`) horizontal padding on mobile. Section rhythm is generous vertical padding (56–72px) rather than visible dividers. Below `640px` all grids collapse to one column; the two-column problem blocks and three-column comparison steps only appear at `min-width: 620–640px`. Density is unhurried — plenty of whitespace between sections — consistent with the "read this slowly" tone, not a dashboard's density.
