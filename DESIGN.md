@@ -115,7 +115,9 @@ The palette reads as a warm, sun-bleached paper world — cream, sage, and terra
 ### Named Rules
 **The Two-Voice Rule.** Only two type families exist on any single page: one serif for headlines, one sans for everything else. Never introduce a third family, and never use the serif for body copy or the sans for a hero headline.
 
-**The Numeral Rule.** CJK serif fonts (Noto Serif SC, Noto Sans SC) ship weak, oversized Latin digit glyphs — any standalone number, stat, or price set in a CJK serif font must instead list Fraunces first in the font stack (e.g. `font-family:'Fraunces','Noto Serif SC',serif`). Browsers render Latin characters in Fraunces and silently fall back to the CJK font for Chinese characters in the same string, so this is a font-stack change only — no markup restructuring needed. Applies across every Melaleuca property, not just this page.
+**The Numeral Rule.** CJK serif fonts (Noto Serif SC, Noto Sans SC) ship weak, oversized Latin digit glyphs — any standalone number, stat, or price set in a CJK serif font must instead list a proper Western serif first in the font stack (e.g. `font-family:'Spectral','Noto Serif SC',serif`). Browsers render Latin characters in the Western face and silently fall back to the CJK font for Chinese characters in the same string, so this is a font-stack change only — no markup restructuring needed.
+
+This page pairs Fraunces with Work Sans per its own Two-Voice Rule and never touches Noto Serif SC, so it isn't affected. The rule targets any Melaleuca property whose CJK type system is built on Noto Serif SC/Noto Sans SC (e.g. `brochure-v4/web.html`) — those pages pair with **Spectral**, chosen for its quiet, non-dramatic character (fits the brand's "no fake urgency" tone) and legible digits at small sizes, unlike Playfair Display/DM Serif Display (too editorial-dramatic) or Archivo Black/Barlow Condensed (too promotional/sporty).
 
 ## Layout
 
