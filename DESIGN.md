@@ -14,7 +14,7 @@ colors:
   line: "#e4dccb"
 typography:
   display:
-    fontFamily: "Fraunces, Georgia, serif"
+    fontFamily: "Spectral, Georgia, serif"
     fontSize: "clamp(28px, 4.2vw, 40px)"
     fontWeight: 500
     lineHeight: 1.22
@@ -101,14 +101,14 @@ The palette reads as a warm, sun-bleached paper world — cream, sage, and terra
 
 ## Typography
 
-**Display Font:** Fraunces (with Georgia, serif fallback)
+**Display Font:** Spectral (with Georgia, serif fallback)
 **Body Font:** Work Sans on the English/BM page (with system-ui, sans-serif fallback); Noto Sans SC on the Chinese comparison page (with system-ui, sans-serif fallback)
 
 **Character:** An unhurried, slightly literary serif for headlines against a clean, humanist grotesque for body copy and UI — the pairing of a hand-written letter's heading with a plainly-typed body.
 
 ### Hierarchy
-- **Display** (weight 500, `clamp(28px, 4.2vw, 40px)`, line-height 1.22): hero `h1` only. Fraunces, letter-spacing -0.01em.
-- **Title** (weight 500, 21px, line-height 1.3): block/card headings (`.block h2`). Still Fraunces.
+- **Display** (weight 500, `clamp(28px, 4.2vw, 40px)`, line-height 1.22): hero `h1` only. Spectral, letter-spacing -0.01em.
+- **Title** (weight 500, 21px, line-height 1.3): block/card headings (`.block h2`). Still Spectral.
 - **Body** (weight 400, 15.5–17px, line-height 1.55): paragraph copy. Work Sans (or Noto Sans SC on the ZH comparison page).
 - **Label** (weight 600, 10–13px, letter-spacing 0.18–0.2em, uppercase): tags, eyebrows, language-toggle buttons. Work Sans.
 
@@ -117,7 +117,7 @@ The palette reads as a warm, sun-bleached paper world — cream, sage, and terra
 
 **The Numeral Rule.** CJK serif fonts (Noto Serif SC, Noto Sans SC) ship weak, oversized Latin digit glyphs — any standalone number, stat, or price set in a CJK serif font must instead list a proper Western serif first in the font stack (e.g. `font-family:'Spectral','Noto Serif SC',serif`). Browsers render Latin characters in the Western face and silently fall back to the CJK font for Chinese characters in the same string, so this is a font-stack change only — no markup restructuring needed.
 
-This page pairs Fraunces with Work Sans per its own Two-Voice Rule and never touches Noto Serif SC, so it isn't affected. The rule targets any Melaleuca property whose CJK type system is built on Noto Serif SC/Noto Sans SC (e.g. `brochure-v4/web.html`) — those pages pair with **Spectral**, chosen for its quiet, non-dramatic character (fits the brand's "no fake urgency" tone) and legible digits at small sizes, unlike Playfair Display/DM Serif Display (too editorial-dramatic) or Archivo Black/Barlow Condensed (too promotional/sporty).
+Spectral is now the standard display face across every Melaleuca property (this page, `compare.html`, and `brochure-v4/web.html`), replacing Fraunces everywhere after a side-by-side comparison of 7+ candidates. Chosen for its quiet, non-dramatic character (fits the brand's "no fake urgency" tone) and legible digits at small sizes — unlike Playfair Display/DM Serif Display (too editorial-dramatic) or Archivo Black/Barlow Condensed (too promotional/sporty). On `web.html`, Spectral pairs with Noto Serif SC per the Numeral Rule above; on this page and `compare.html`, it pairs directly with Work Sans/Noto Sans SC per the Two-Voice Rule.
 
 ## Layout
 
